@@ -16,7 +16,7 @@ test('UI negative - login with invalid credentials', async ({ homePage }) => {
     });
 
     await test.step('Verify invalid credentials error message is displayed', async () => {
-        //await homePage.assertInvalidCredentialsError(); // a bug in platform
-        await homePage.assertInternalLoginError()
+        await homePage.assertInvalidCredentialsError(); // a bug in platform
+        //await homePage.assertInternalLoginError()
     });
 });
