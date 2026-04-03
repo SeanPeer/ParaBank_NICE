@@ -42,7 +42,7 @@ export class HomePage extends BasePage {
     }
 
     private get invalidCredentialsError() {
-        return this.page.locator('#rightPanel .error').filter({
+        return this.page.locator('#rightPanel').locator('.error').filter({
             hasText: INVALID_CREDENTIALS_MESSAGE,
         });
     }
@@ -127,8 +127,6 @@ export class HomePage extends BasePage {
     }
 
     async assertInvalidCredentialsError(): Promise<void> {
-        await expect(this.invalidCredentialsError).toHaveText(
-            INVALID_CREDENTIALS_MESSAGE
-        );
+        await expect(this.invalidCredentialsError).toHaveText(INVALID_CREDENTIALS_MESSAGE);
     }
 }
