@@ -84,7 +84,7 @@ npx playwright install
 ```
 
 ## Environment Configuration
-- Create a .env file based on .env.example.
+- env.ts contain all environment values that are needed.
 - Notes
   - `BASE_URL` is used for UI tests
   - `API_BASE_URL` is used for API requests
