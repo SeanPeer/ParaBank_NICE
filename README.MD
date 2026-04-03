@@ -90,8 +90,10 @@ npx playwright install
   - `API_BASE_URL` is used for API requests
   - `API_USERNAME` and `API_PASSWORD` are used for stable API and hybrid scenarios
 
-## Run Tests
-###Run all tests
+# Run Tests
+
+## Run all tests
+
 ```bash
  npm test
  ```
