@@ -127,6 +127,6 @@ export class HomePage extends BasePage {
     }
 
     async assertInvalidCredentialsError(): Promise<void> {
-        await expect(this.invalidCredentialsError).toHaveText(INVALID_CREDENTIALS_MESSAGE);
+        await expect(this.invalidCredentialsError,'Wrong Error is displayed !').toHaveText(INVALID_CREDENTIALS_MESSAGE);
     }
 }
