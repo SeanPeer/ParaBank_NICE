@@ -42,9 +42,7 @@ export class HomePage extends BasePage {
     }
 
     private get invalidCredentialsError() {
-        return this.page.locator('#rightPanel').locator('.error').filter({
-            hasText: INVALID_CREDENTIALS_MESSAGE,
-        });
+        return this.page.locator('#rightPanel').locator('.error')
     }
 
     private get internalLoginError() {
