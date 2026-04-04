@@ -272,10 +272,54 @@ Retries should be limited and only used for temporary environment issues, not to
 I would also separate UI and API suites when needed, since they often behave differently in CI.
 
 ### Dockerization
-I would use Docker to create a consistent execution environment.  
-The image would include Node.js, Playwright, browser dependencies, and any required tools.
+## Docker
 
-This helps avoid machine-specific issues and makes local setup and CI more reliable.  
-The container should accept environment variables at runtime so the same image can run in different environments without rebuilding.
+The project can be executed inside Docker to provide a reproducible environment with Node.js, Playwright, browser dependencies, and `curl` already available.
 
-The main benefit of Docker is consistency, portability, and easier onboarding.
+### Why Docker is useful here
+
+Docker helps ensure that the framework runs the same way across different machines and CI environments.  
+This is especially useful for Playwright projects because browser dependencies and OS-level tooling can vary between systems.
+
+In this project, Docker is also useful because the framework uses `curl` for the CHECKING account creation step required by the assignment.
+
+### Dockerfile overview
+
+The Docker image is based on the official Playwright image and includes:
+
+- Node.js
+- Playwright browsers and runtime dependencies
+- `curl`
+- project dependencies installed with `npm ci`
+
+### Build the image
+
+Run this from the project root:
+
+```bash
+docker build -t parabank-playwright .
+```
+
+Run the full test suite
+
+```bash 
+docker run --rm \
+  -e BASE_URL=https://parabank.parasoft.com/parabank \
+  -e API_BASE_URL=https://parabank.parasoft.com/parabank/services/bank \
+  -e API_USERNAME=john \
+  -e API_PASSWORD=demo \
+  parabank-playwright
+```
+
+Run a specific suite
+
+```bash
+docker run --rm \
+  -e BASE_URL=https://parabank.parasoft.com/parabank \
+  -e API_BASE_URL=https://parabank.parasoft.com/parabank/services/bank \
+  -e API_USERNAME=john \
+  -e API_PASSWORD=demo \
+  parabank-playwright \
+  npx playwright test src/tests/e2e
+```
+

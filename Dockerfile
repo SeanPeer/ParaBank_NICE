@@ -11,4 +11,4 @@ COPY . .
 
 RUN npx playwright install --with-deps
 
-CMD ["npx", "playwright", "test", "src/tests/e2e"]
+CMD ["npx", "playwright", "test"]
